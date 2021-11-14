@@ -30,11 +30,13 @@ import com.example.cupcake.model.OrderViewModel
  * This is the first screen of the Cupcake app. The user can choose how many cupcakes to order.
  */
 class StartFragment : Fragment() {
+    val sharedViewModel: OrderViewModel by activityViewModels()
 
     // Binding object instance corresponding to the fragment_start.xml layout
     // This property is non-null between the onCreateView() and onDestroyView() lifecycle callbacks,
     // when the view hierarchy is attached to the fragment.
     private var binding: FragmentStartBinding? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,19 +46,11 @@ class StartFragment : Fragment() {
         binding = fragmentBinding
         return fragmentBinding.root
     }
-     val sharedViewModel: OrderViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.startFragment = this
 
-
-        binding?.apply {
-            // Set up the button click listeners
-            orderOneCupcake.setOnClickListener { orderCupcake(1) }
-            orderSixCupcakes.setOnClickListener { orderCupcake(6) }
-            orderTwelveCupcakes.setOnClickListener { orderCupcake(12) }
-        }
     }
 
     /**
